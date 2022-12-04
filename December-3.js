@@ -77,4 +77,27 @@ const commonLetterScore = data.map((rucksack) => {
 const initialValue = 0;
 const totalScore = commonLetterScore.reduce((accumulator, currentValue) => accumulator + currentValue, initialValue)
 
-console.log({totalScore})
+// console.log({totalScore})
+
+// part two
+// within each group of three Elves, the badge is the only item type carried by all three Elves. That is, if a group's badge is item type B, then all three Elves will have item type B somewhere in their rucksack, and at most two of the Elves will be carrying any other item type.
+// The only way to tell which item type is the right one is by finding the one item type that is common between all three Elves in each group.
+
+const elfGroups = [];
+const elfGroupSize = 3;
+    for (let i = 0; i < data.length; i += elfGroupSize) {
+        elfGroups.push(data.slice(i, i + elfGroupSize));
+}
+
+const badges = elfGroups.map((group) => {
+    for(let i = 0; i < group[0].length; i++){
+        if((group[1].includes(group[0][i])) && (group[2].includes(group[0][i]))){
+            return letterScoreDictionary[group[0][i]]
+        }
+        continue
+    }
+});
+
+const totalBadgeScore = badges.reduce((accumulator, currentValue) => accumulator + currentValue, initialValue)
+
+console.log(totalBadgeScore)
