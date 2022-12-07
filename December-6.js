@@ -50,7 +50,7 @@ for (let i = 0; i < data.length; i++) {
 
     if (isUnique){
         console.log({string})
-        console.log("numer: ", (i + 14))
+        console.log("number: ", (i + 14))
         return string
     } else continue
 }
